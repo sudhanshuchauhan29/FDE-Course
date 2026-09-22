@@ -14,12 +14,6 @@ public class SummarizeService {
     public String summarize(String ticket)
     {
         String output = chatClient.prompt()
-                .system("""
-                    You are a helpful technical writer.
-                    Always answer in exactly 10 numbered lines.
-                    Keep each line concise.
-                    Include code snippets where appropriate.
-                    """)
                 .user(ticket)
                 .call()
                 .content();
