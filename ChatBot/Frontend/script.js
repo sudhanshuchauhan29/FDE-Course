@@ -1,46 +1,118 @@
+const messageInput = document.getElementById("message");
+const chatBox = document.getElementById("chatBox");
+const sendButton = document.querySelector("button");
+
 
 async function sendMessage() {
 
-    const messageInput = document.getElementById("message");
-    const responseBox = document.getElementById("response");
-
     const message = messageInput.value.trim();
 
-    if (!message) {
+    if (message === "") {
         return;
     }
 
-    responseBox.innerText = "Loading...";
+
+    // Show user message
+
+    chatBox.innerHTML += `
+        <div class="message user">
+            ${message}
+        </div>
+    `;
+
+
+    // Clear input
+
+    messageInput.value = "";
+
+
+    // Disable button while waiting
+
+    sendButton.disabled = true;
+
+    chatBox.innerHTML += `
+        <div class="message bot" id="loading">
+            Thinking...
+        </div>
+    `;
+
+
+    // Scroll down
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
 
     try {
 
-        const response = await fetch("http://localhost:8080/api/chat", {
-            method: "POST",
+        const response = await fetch(
+            "http://localhost:8080/api/chat",
+            {
+                method: "POST",
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-            // Send String because @RequestBody String message
-            body: JSON.stringify(message)
-        });
+                body: JSON.stringify(message)
+            }
+        );
+
 
         if (!response.ok) {
-            throw new Error("Server error: " + response.status);
+            throw new Error("Server error");
         }
 
-        // Backend returns String, not JSON
-        const data = await response.text();
 
-        responseBox.innerText = data;
+        // Your backend returns String
+
+        const answer = await response.text();
+
+
+        // Remove Thinking...
+
+        document.getElementById("loading").remove();
+
+
+        // Show AI response
+
+        chatBox.innerHTML += `
+            <div class="message bot">
+                ${answer}
+            </div>
+        `;
+
 
     } catch (error) {
 
-        console.error(error);
+        document.getElementById("loading").remove();
 
-        responseBox.innerText =
-            "Error connecting to backend.\n" +
-            error.message;
+        chatBox.innerHTML += `
+            <div class="message bot">
+                ❌ Unable to connect to server.
+            </div>
+        `;
+
+        console.error(error);
     }
+
+
+    // Scroll to bottom
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+
+    sendButton.disabled = false;
+
+    messageInput.focus();
 }
 
+
+// Press Enter to send
+
+messageInput.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+
+});

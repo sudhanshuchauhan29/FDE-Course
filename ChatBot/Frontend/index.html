@@ -3,29 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chat App</title>
+
+    <title>Tomato</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h1>AI Chat</h1>
+<div class="chat-container">
 
-    <div id="response" class="response">
-        Response will appear here...
+    <div class="chat-header">
+        <h2>☕ Tomato Assistant</h2>
+        <span>Online</span>
     </div>
 
-    <div class="input-box">
+    <div class="chat-box" id="chatBox">
+
+        <div class="message bot">
+            Hello! welcome to Tomato support. <br> 
+            How can I help you with your order today?
+        </div>
+
+    </div>
+
+    <div class="input-area">
+
         <input
             type="text"
             id="message"
             placeholder="Ask something..."
-        />
+        >
 
         <button onclick="sendMessage()">Send</button>
+
     </div>
+
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
