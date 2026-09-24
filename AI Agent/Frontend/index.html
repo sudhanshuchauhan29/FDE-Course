@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebCraft AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">✦</div>
+            <div>
+                <h2>WebCraft</h2>
+                <span>AI Website Builder</span>
+            </div>
+        </div>
+
+        <button class="new-project" onclick="newProject()">
+            + New Website
+        </button>
+
+        <div class="sidebar-section">
+            <p>RECENT PROJECTS</p>
+
+            <div class="project active">
+                <span>🌐</span>
+                My Website
+            </div>
+
+            <div class="project">
+                <span>🛍️</span>
+                E-commerce Site
+            </div>
+
+            <div class="project">
+                <span>💼</span>
+                Portfolio
+            </div>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div>⚙️ Settings</div>
+            <div>❓ Help</div>
+        </div>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div>
+                <h1>AI Website Builder</h1>
+                <p>Describe your website and let AI build it for you.</p>
+            </div>
+
+            <div class="status">
+                <span class="dot"></span>
+                AI Online
+            </div>
+
+        </header>
+
+
+        <!-- Workspace -->
+        <section class="workspace">
+
+            <!-- Chat -->
+            <div class="chat-panel">
+
+                <div class="chat-header">
+                    <div class="agent-avatar">✦</div>
+
+                    <div>
+                        <h3>WebCraft Agent</h3>
+                        <span>Ready to build</span>
+                    </div>
+                </div>
+
+
+                <div class="chat-box" id="chatBox">
+
+                    <div class="message bot">
+
+                        <div class="message-title">
+                            ✦ WebCraft Agent
+                        </div>
+
+                        Hi! I'm your AI website builder.
+
+                        <br><br>
+
+                        Tell me what kind of website you want to create.
+
+                        <br><br>
+
+                        For example:
+                        <br>
+                        • "Create a modern portfolio website"
+                        <br>
+                        • "Build an online food delivery website"
+                        <br>
+                        • "Make a landing page for my startup"
+
+                    </div>
+
+                </div>
+
+
+                <!-- Suggestions -->
+
+                <div class="suggestions">
+
+                    <button onclick="useSuggestion('Create a modern portfolio website')">
+                        ✨ Portfolio
+                    </button>
+
+                    <button onclick="useSuggestion('Create an e-commerce website')">
+                        🛍️ E-commerce
+                    </button>
+
+                    <button onclick="useSuggestion('Create a modern landing page')">
+                        🚀 Landing Page
+                    </button>
+
+                </div>
+
+
+                <!-- Input -->
+
+                <div class="input-area">
+
+                    <textarea
+                            id="message"
+                            placeholder="Describe the website you want..."
+                            rows="1"></textarea>
+
+                    <button
+                            id="sendButton"
+                            onclick="sendMessage()">
+                        ➤
+                    </button>
+
+                </div>
+
+                <div class="input-info">
+                    Press Enter to send • Shift + Enter for new line
+                </div>
+
+            </div>
+
+
+            <!-- Preview -->
+
+            <div class="preview-panel">
+
+                <div class="preview-header">
+
+                    <div>
+                        <h3>Live Preview</h3>
+                        <span id="previewStatus">
+                            Waiting for instructions
+                        </span>
+                    </div>
+
+                    <div class="preview-actions">
+
+                        <button onclick="refreshPreview()">
+                            ↻
+                        </button>
+
+                        <button onclick="openPreview()">
+                            ↗
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="browser">
+
+                    <div class="browser-bar">
+
+                        <div class="browser-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="browser-url">
+                            webcraft.local
+                        </div>
+
+                    </div>
+
+
+                    <iframe
+                            id="websitePreview"
+                            title="Website Preview">
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
